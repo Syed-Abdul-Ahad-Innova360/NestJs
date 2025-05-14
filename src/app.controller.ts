@@ -1,12 +1,15 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { Body, Controller, Get, Post, Req, BadRequestException, Param} from "@nestjs/common";
+import { Request } from "express";
 
 @Controller()
-export class AppController {
-  constructor(private readonly appService: AppService) {}
+export class AppController{
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
-  }
+
+    // by default the route is "/"
+
+    // @Get()
+    // getUser(){
+    //     return {"name":"Syed Abdul Ahad", "age":18}
+    // }
+
 }
