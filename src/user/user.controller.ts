@@ -1,8 +1,9 @@
-import { Controller , Get, Post, Param, Req,Body, BadRequestException, Patch, ParseIntPipe} from "@nestjs/common";
-import { Request } from "express";
+// import { Controller , Get, Post, Param, Req,Body, BadRequestException, Patch, ParseIntPipe} from "@nestjs/common";
+// import { Request } from "express";
+import { Controller,Get, Param } from "@nestjs/common";
 import { UserService } from "./user.service";
-import { UpdateUserDTO } from "./DTO/updateUserDTO";
-import { CreateUserDTO } from "./DTO/create-user.dto";
+// import { UpdateUserDTO } from "./DTO/updateUserDTO";
+// import { CreateUserDTO } from "./DTO/create-user.dto";
 
 @Controller('/user')
 export class UserController{
@@ -20,10 +21,10 @@ export class UserController{
        //     return {message:"user created successfully"}
        // }
    
-       @Post('/')
-       createUser(@Body() CreateUserDTO: CreateUserDTO){
-        return this.userService.create(CreateUserDTO)
-       }
+    //    @Post('/')
+    //    createUser(@Body() CreateUserDTO: CreateUserDTO){
+    //     return this.userService.create(CreateUserDTO)
+    //    }
 
     //    @Patch("/:userId")
     //    updateUser(@Body() userData: UpdateUserDTO, @Param() param: {userId: number}){
@@ -31,10 +32,10 @@ export class UserController{
     //    }
 
 
-    @Patch("/:userId")
-       updateUser(@Body() userData: UpdateUserDTO, @Param('userId', ParseIntPipe) userId: number){
-        return this.userService.update(userData, userId)
-    }
+    // @Patch("/:userId")
+    //    updateUser(@Body() userData: UpdateUserDTO, @Param('userId', ParseIntPipe) userId: number){
+    //     return this.userService.update(userData, userId)
+    // }
 
    
        @Get('/:userId')
