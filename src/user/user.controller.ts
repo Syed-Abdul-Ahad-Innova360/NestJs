@@ -1,6 +1,8 @@
-import { Controller , Get, Post, Param, Req, BadRequestException} from "@nestjs/common";
+import { Controller , Get, Post, Param, Req,Body, BadRequestException, Patch, ParseIntPipe} from "@nestjs/common";
 import { Request } from "express";
 import { UserService } from "./user.service";
+import { UpdateUserDTO } from "./DTO/updateUserDTO";
+import { CreateUserDTO } from "./DTO/create-user.dto";
 
 @Controller('/user')
 export class UserController{
@@ -19,13 +21,21 @@ export class UserController{
        // }
    
        @Post('/')
-       createUser(@Req() req:Request){
-           const {email,password} = req.body
-           if(!email || !password){
-               throw new BadRequestException("Enter email and password")
-           }
-           return {message:"user created successfully"}
+       createUser(@Body() CreateUserDTO: CreateUserDTO){
+        return this.userService.create(CreateUserDTO)
        }
+
+    //    @Patch("/:userId")
+    //    updateUser(@Body() userData: UpdateUserDTO, @Param() param: {userId: number}){
+    //     return this.userService.update(userData, param)
+    //    }
+
+
+    @Patch("/:userId")
+       updateUser(@Body() userData: UpdateUserDTO, @Param('userId', ParseIntPipe) userId: number){
+        return this.userService.update(userData, userId)
+    }
+
    
        @Get('/:userId')
        getUserwithId(@Param('userId') userId: string){
